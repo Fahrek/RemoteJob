@@ -50,3 +50,7 @@ def cv_create(request):
         conn.close()
 
     return render(request, "cv_create.html")
+
+
+def cv_generate(request):
+    return render(request, "cv_generate.html")
