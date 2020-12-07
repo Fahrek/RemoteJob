@@ -1,6 +1,11 @@
-from django.shortcuts import redirect
-from pages.views import *
+from django.shortcuts import render, redirect
 from django.contrib import messages
+
+import os
+import cgi
+import cgitb
+
+cgitb.enable()
 
 import psycopg2
 import psycopg2.extras
@@ -8,20 +13,41 @@ import psycopg2.extras
 
 # Create your views here.
 def company_view(request):
-    if request.method == 'POST':
-        conn = psycopg2.connect(dbname="tecnojob00", user="postgres", password="47601469W", host="localhost", port=5432)
 
+    if request.method == 'POST':
+
+        conn = psycopg2.connect(dbname="tecnojob00", user="postgres", password="47601469W", host="localhost", port=5432)
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        form = cgi.FieldStorage()
+
+        # pic = ""
+        # fn = ""
 
         name  = request.POST.get("name",  default=None)
         cif   = request.POST.get("cif",   default=None)
         email = request.POST.get("email", default=None)
         url   = request.POST.get("url",   default=None)
+        img   = request.POST.get("filename", default=None)
+        # img = form['filename']
+        # img = form.getvalue('filename')
 
-        insertSQL = "INSERT INTO company (c_name, cif, email, site) VALUES (%s, %s, %s, %s);"
-        placeholder = (name, cif, email, url)
+        # insertBlob()
 
-        cursor.execute(insertSQL, placeholder)
+        # fn = img.save('C:/Users/Fahrek\PycharmProjects/remotejob/projectfinal/company_crud/static/img/temp/mypic.jpg', 'JPEG')
+
+        # if form['filename']:
+        #     fn = os.path.basename(img.filename)
+        #     pic = open('C:/Users/Fahrek/PycharmProjects/remotejob/projectfinal/company_crud/static/img/temp' + fn, 'wb').write(fle.file.read())
+        #     messages.success(request, f'La imagen {fn} | {pic} se ha guardado correctamente')
+        # else:
+        #     messages.success(request, 'La imagen no se ha guardado')
+
+        # pic = open("C:/Users/Fahrek/PycharmProjects/remotejob/projectfinal/company_crud/static/img/temp" + fn, "wb").write(img.file.read())
+
+        insertSQL = "INSERT INTO company (c_name, cif, email, site, logo) VALUES (%s, %s, %s, %s, %s);"
+        getData = (name, cif, email, url, img)
+
+        cursor.execute(insertSQL, getData)
 
         conn.commit()
         cursor.close()

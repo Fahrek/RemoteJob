@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import *
+from .views import index, crear_oferta, crear_cv
 
 urlpatterns = [
     path('', index, name="oferta"),

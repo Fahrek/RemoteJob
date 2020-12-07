@@ -8557,3 +8557,7 @@ I
 cv_crud/urls.py,9\1\91609324e7e87fc2d56f4889fd7e890982260785
 P
  cv_crud/templates/cv_create.html,e\e\ee3161328a541eb548c77abd4327c4fc9cbfb73e
+R
+"cv_crud/templates/cv_generate.html,7\8\78049eac593a4e7367af79a862a598820bdf58e1
+I
+statics/css/devresume.css,4\9\49f7ba58b08805a9edc4bc1e563b8c4e15a3609b

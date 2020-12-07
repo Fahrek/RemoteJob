@@ -1,20 +1,20 @@
 from django.shortcuts import render, redirect
-from pages.forms import FormularioPost
+from .forms import FormularioPost
 from django.contrib import messages
 from django.db import connection
-from pages.models import Post
+from .models import Post
 from django.core.paginator import Paginator
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from careerjet_api import CareerjetAPIClient
 
+import cgi
+import os
+
 import pymysql
 import psycopg2
 import psycopg2.extras
-
-
-# import psycopg2.extras
 
 
 # Función principal
