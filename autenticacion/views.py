@@ -25,7 +25,6 @@ def acceder(request):
     return render(request, "acceder.html", {"form": form})
 
 
-# Create your views here.
 class VistaRegistro(View):
     # noinspection PyMethodMayBeStatic
     def get(self, request):
