@@ -24,6 +24,7 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,17 +34,20 @@ INSTALLED_APPS = [
 
     # Paquetes del proyecto
     'crispy_forms',
+    'colorfield',
 
     # App propias
     'pages',
     'category_crud',
     'autenticacion',
     'city_crud',
-    'candidate_crud',
+    'candidate_crud.apps.CandidateCrudConfig',
     'company_crud',
     'cv_crud',
-    'province_crud'
+    'province_crud',
 ]
+
+X_FRAME_OPTIONS="SAMEORIGIN"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

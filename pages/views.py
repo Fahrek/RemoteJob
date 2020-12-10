@@ -3,6 +3,7 @@ from .forms import FormularioPost
 from django.contrib import messages
 from django.db import connection
 from .models import Post
+from requests import request
 from django.core.paginator import Paginator
 
 from bs4 import BeautifulSoup
@@ -15,6 +16,13 @@ import os
 import pymysql
 import psycopg2
 import psycopg2.extras
+
+
+# def getCompanyImg(request):
+#     url = "https://www.opcionempleo.com/jobad/es1acdd33ed701c8265133cca9fd131583"
+#     src_code = request.get(url)
+#     plain_txt = src_code.text
+#     BeautifulSoup(plain_txt)
 
 
 # Función principal
@@ -37,6 +45,8 @@ def index(request):
         save_to_db(request, api_offer_list)
         offer_list_view = api_offer_list
         #list_view = db_offer_list + api_offer_list
+    else:
+        messages.error(request, "No existen ofertas de empleo con ese nombre")
     print(offer_list_view)
     return render(request, "oferta_empleo.html", {"offer_list_view": offer_list_view})
 

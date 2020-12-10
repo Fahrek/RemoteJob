@@ -8,13 +8,13 @@ class Candidate(models.Model):
     dni           = models.CharField(max_length=255, default=None, verbose_name="DNI")
     telephone     = models.CharField(max_length=255, default=None, verbose_name="Telefono fijo")
     mobile        = models.CharField(max_length=255, default=None, verbose_name="Mobil")
-    portrait_img  = models.CharField(max_length=255, default=None, verbose_name="Imagen")
+    portrait_img  = models.CharField(max_length=255, verbose_name="Imagen")
     birth_date    = models.DateField(default=None, verbose_name="Fecha de nacimiento")
     created_at    = models.DateField(auto_now_add=True)
     last_modified = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.user.id
+        return self.user.first_name
 
     class Meta:
         db_table: 'candidate'
